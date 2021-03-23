@@ -631,18 +631,6 @@ class XiangqiGame:
         else:
             self._opp_player = self._red_player
 
-    def pos_convert(self, pos):
-        """Converts the player inputted pos to integers to represent index locations on board. Returns as a list."""
-        row = int(pos[1:]) - 1  # Convert the number in the pos into the row integer
-        column = pos[:1].lower()  # Get the letter to be converted into column integer
-
-        convert_dict = {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6, "h": 7, "i": 8}
-        if column in convert_dict:  # Convert to corresponding integer
-            column = convert_dict[column]
-        else:  # If string is not a-i, convert to arbitrary number off the board
-            column = 77
-
-        return [row, column]
 
     def general_sight_test(self, num=1):
         """
@@ -768,8 +756,8 @@ class XiangqiGame:
         board = self._board
 
         # Convert input strings into coordinates on the board
-        cp = self.pos_convert(curr_pos)  # current position coordinates as a list
-        np = self.pos_convert(new_pos)  # intended new position coordinates as a list
+        cp = curr_pos  # current position coordinates as a list
+        np = new_pos   # intended new position coordinates as a list
 
         # Check if inputted positions are inside board dimensions
         if cp[0] not in self._row_dimensions or cp[1] not in self._col_dimensions:
@@ -855,47 +843,35 @@ class XiangqiGame:
 
 
 def debug(msg1, msg2="", msg3="", msg4=""):
-    DEBUG = False
+    DEBUG = True
     if DEBUG == True:
         print(msg1, msg2, msg3, msg4)
 
 
 # Define some colors
-BLACK = (0, 0, 0)
+BGC = (0, 0, 0)
+BLACK = (50, 50, 50)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 
 # This sets the WIDTH and HEIGHT of each grid location
-WIDTH = 30
-HEIGHT = 30
+WIDTH = 70
+HEIGHT = 70
 
 # This sets the margin between each cell
 MARGIN = 5
 
-# Create a 2 dimensional array. A two dimensional
-# array is simply a list of lists.
-grid = []
-for row in range(10):
-    # Add an empty array that will hold each cell
-    # in this row
-    grid.append([])
-    for column in range(9):
-        grid[row].append(0)  # Append a cell
-
-# Set row 1, cell 5 to one. (Remember rows and
-# column numbers start at zero.)
-grid[1][5] = 1
 
 # Initialize pygame
 pygame.init()
 
 # Set the HEIGHT and WIDTH of the screen
-WINDOW_SIZE = [320, 355]
+WINDOW_SIZE = [680, 755]
 screen = pygame.display.set_mode(WINDOW_SIZE)
 
 # Set title of screen
-pygame.display.set_caption("Array Backed Grid")
+pygame.display.set_caption("XiangQi Game")
 
 # Loop until the user clicks the close button.
 done = False
@@ -903,36 +879,58 @@ done = False
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
+game = XiangqiGame()
+grid = game.get_board()
+pos_holder = []
+board_coord = []
 # -------- Main Program Loop -----------
 while not done:
+
+    font = pygame.font.SysFont('Calibri', 18, False, False)
+
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             done = True  # Flag that we are done so we exit this loop
         elif event.type == pygame.MOUSEBUTTONDOWN:
             # User clicks the mouse. Get the position
             pos = pygame.mouse.get_pos()
+            pos_holder = [pos[0], pos[1]]
             # Change the x/y screen coordinates to grid coordinates
             column = pos[0] // (WIDTH + MARGIN)
             row = pos[1] // (HEIGHT + MARGIN)
             # Set that location to one
-            grid[row][column] = 1
+            if not board_coord:
+                board_coord = [row, column]
+            else:
+                game.make_move(board_coord, [row, column])
+                board_coord = []
             print("Click ", pos, "Grid coordinates: ", row, column)
 
     # Set the screen background
-    screen.fill(BLACK)
+    screen.fill(BGC)
 
     # Draw the grid
     for row in range(10):
         for column in range(9):
             color = WHITE
-            if grid[row][column] == 1:
-                color = GREEN
+            piece = grid[row][column]
+            piece_name = ""
+            if piece != "_______":
+                piece_name = piece.get_name()
+                if piece.get_piece_color() == "red":
+                    color = RED
+                else:
+                    color = BLACK
             pygame.draw.rect(screen,
                              color,
                              [(MARGIN + WIDTH) * column + MARGIN,
                               (MARGIN + HEIGHT) * row + MARGIN,
                               WIDTH,
                               HEIGHT])
+
+            text = font.render(piece_name, True, WHITE)
+
+            screen.blit(text, [(MARGIN + WIDTH) * column + MARGIN, (MARGIN + HEIGHT) * row + MARGIN])
 
     # Limit to 60 frames per second
     clock.tick(60)

@@ -480,81 +480,81 @@ class XiangqiGame:
 
         # Initialize starting positions of pieces
         # Initialize General positions
-        red_gen = General("RED_GEN", [0, 4], "red", red_player, self._board)
+        red_gen = General("GENERAL", [0, 4], "red", red_player, self._board)
         self._board[0][4] = red_gen
-        blk_gen = General("BLK_GEN", [9, 4], "black", blk_player, self._board)
+        blk_gen = General("GENERAL", [9, 4], "black", blk_player, self._board)
         self._board[9][4] = blk_gen
 
         # Initialize Advisor pieces
-        red_advisor1 = Advisor("RED_ADV", [0, 3], "red", red_player, self._board)
+        red_advisor1 = Advisor("ADVISOR", [0, 3], "red", red_player, self._board)
         self._board[0][3] = red_advisor1
-        red_advisor2 = Advisor("RED_ADV", [0, 5], "red", red_player, self._board)
+        red_advisor2 = Advisor("ADVISOR", [0, 5], "red", red_player, self._board)
         self._board[0][5] = red_advisor2
-        blk_advisor1 = Advisor("BLK_ADV", [9, 3], "black", blk_player, self._board)
+        blk_advisor1 = Advisor("ADVISOR", [9, 3], "black", blk_player, self._board)
         self._board[9][3] = blk_advisor1
-        blk_advisor2 = Advisor("BLK_ADV", [9, 5], "black", blk_player, self._board)
+        blk_advisor2 = Advisor("ADVISOR", [9, 5], "black", blk_player, self._board)
         self._board[9][5] = blk_advisor2
 
         # Initialize Elephant pieces
-        red_elephant1 = Elephant("RED_ELE", [0, 2], "red", red_player, self._board)
+        red_elephant1 = Elephant("ELEPHNT", [0, 2], "red", red_player, self._board)
         self._board[0][2] = red_elephant1
-        red_elephant2 = Elephant("RED_ELE", [0, 6], "red", red_player, self._board)
+        red_elephant2 = Elephant("ELEPHNT", [0, 6], "red", red_player, self._board)
         self._board[0][6] = red_elephant2
-        blk_elephant1 = Elephant("BLK_ELE", [9, 2], "black", blk_player, self._board)
+        blk_elephant1 = Elephant("ELEPHNT", [9, 2], "black", blk_player, self._board)
         self._board[9][2] = blk_elephant1
-        blk_elephant2 = Elephant("BLK_ELE", [9, 6], "black", blk_player, self._board)
+        blk_elephant2 = Elephant("ELEPHNT", [9, 6], "black", blk_player, self._board)
         self._board[9][6] = blk_elephant2
 
         # Initialize Horse pieces
-        red_horse1 = Horse("RED_HOR", [0, 1], "red", red_player, self._board)
+        red_horse1 = Horse("HORSE", [0, 1], "red", red_player, self._board)
         self._board[0][1] = red_horse1
-        red_horse2 = Horse("RED_HOR", [0, 7], "red", red_player, self._board)
+        red_horse2 = Horse("HORSE", [0, 7], "red", red_player, self._board)
         self._board[0][7] = red_horse2
-        blk_horse1 = Horse("BLK_HOR", [9, 1], "black", blk_player, self._board)
+        blk_horse1 = Horse("HORSE", [9, 1], "black", blk_player, self._board)
         self._board[9][1] = blk_horse1
-        blk_horse2 = Horse("BLK_HOR", [9, 7], "black", blk_player, self._board)
+        blk_horse2 = Horse("HORSE", [9, 7], "black", blk_player, self._board)
         self._board[9][7] = blk_horse2
 
         # Initialize Chariot pieces
-        red_chariot1 = Chariot("RED_CHA", [0, 0], "red", red_player, self._board)
+        red_chariot1 = Chariot("CHARIOT", [0, 0], "red", red_player, self._board)
         self._board[0][0] = red_chariot1
-        red_chariot2 = Chariot("RED_CHA", [0, 8], "red", red_player, self._board)
+        red_chariot2 = Chariot("CHARIOT", [0, 8], "red", red_player, self._board)
         self._board[0][8] = red_chariot2
-        blk_chariot1 = Chariot("BLK_CHA", [9, 8], "black", blk_player, self._board)
+        blk_chariot1 = Chariot("CHARIOT", [9, 8], "black", blk_player, self._board)
         self._board[9][0] = blk_chariot1
-        blk_chariot2 = Chariot("BLK_CHA", [9, 8], "black", blk_player, self._board)
+        blk_chariot2 = Chariot("CHARIOT", [9, 8], "black", blk_player, self._board)
         self._board[9][8] = blk_chariot2
 
         # Initialize Cannon pieces
-        red_cannon1 = Cannon("RED_CAN", [2, 1], "red", red_player, self._board)
+        red_cannon1 = Cannon("CANNON", [2, 1], "red", red_player, self._board)
         self._board[2][1] = red_cannon1
-        red_cannon2 = Cannon("RED_CAN", [2, 7], "red", red_player, self._board)
+        red_cannon2 = Cannon("CANNON", [2, 7], "red", red_player, self._board)
         self._board[2][7] = red_cannon2
-        blk_cannon1 = Cannon("BLK_CAN", [7, 1], "black", blk_player, self._board)
+        blk_cannon1 = Cannon("CANNON", [7, 1], "black", blk_player, self._board)
         self._board[7][1] = blk_cannon1
-        blk_cannon2 = Cannon("BLK_CAN", [7, 7], "black", blk_player, self._board)
+        blk_cannon2 = Cannon("CANNON", [7, 7], "black", blk_player, self._board)
         self._board[7][7] = blk_cannon2
 
         # Initialize Soldier pieces
-        red_soldier1 = Soldier("REDSLDR", [3, 0], "red", red_player, self._board)
+        red_soldier1 = Soldier("SOLDIER", [3, 0], "red", red_player, self._board)
         self._board[3][0] = red_soldier1
-        red_soldier2 = Soldier("REDSLDR", [3, 2], "red", red_player, self._board)
+        red_soldier2 = Soldier("SOLDIER", [3, 2], "red", red_player, self._board)
         self._board[3][2] = red_soldier2
-        red_soldier3 = Soldier("REDSLDR", [3, 4], "red", red_player, self._board)
+        red_soldier3 = Soldier("SOLDIER", [3, 4], "red", red_player, self._board)
         self._board[3][4] = red_soldier3
-        red_soldier4 = Soldier("REDSLDR", [3, 6], "red", red_player, self._board)
+        red_soldier4 = Soldier("SOLDIER", [3, 6], "red", red_player, self._board)
         self._board[3][6] = red_soldier4
-        red_soldier5 = Soldier("REDSLDR", [3, 8], "red", red_player, self._board)
+        red_soldier5 = Soldier("SOLDIER", [3, 8], "red", red_player, self._board)
         self._board[3][8] = red_soldier5
-        blk_soldier1 = Soldier("BLKSLDR", [6, 0], "black", blk_player, self._board)
+        blk_soldier1 = Soldier("SOLDIER", [6, 0], "black", blk_player, self._board)
         self._board[6][0] = blk_soldier1
-        blk_soldier2 = Soldier("BLKSLDR", [6, 2], "black", blk_player, self._board)
+        blk_soldier2 = Soldier("SOLDIER", [6, 2], "black", blk_player, self._board)
         self._board[6][2] = blk_soldier2
-        blk_soldier3 = Soldier("BLKSLDR", [6, 4], "black", blk_player, self._board)
+        blk_soldier3 = Soldier("SOLDIER", [6, 4], "black", blk_player, self._board)
         self._board[6][4] = blk_soldier3
-        blk_soldier4 = Soldier("BLKSLDR", [6, 6], "black", blk_player, self._board)
+        blk_soldier4 = Soldier("SOLDIER", [6, 6], "black", blk_player, self._board)
         self._board[6][6] = blk_soldier4
-        blk_soldier5 = Soldier("BLKSLDR", [6, 8], "black", blk_player, self._board)
+        blk_soldier5 = Soldier("SOLDIER", [6, 8], "black", blk_player, self._board)
         self._board[6][8] = blk_soldier5
 
         # Add starting pieces to respective player active pieces lists
